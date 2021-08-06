@@ -42,10 +42,10 @@ class AnimalServiceTest {
         Cliente c1 = new Cliente(1L, "nome", "01216381038", null);
         when(clienteService.acharTutorId(1L)).thenReturn(c1);
         Animal animal = new Animal(null, criacao.getApelido(),criacao.getNascimento(), criacao.getTipo(), c1);
-        Animal animalSalvo = new Animal(25L, criacao.getApelido(),criacao.getNascimento(), criacao.getTipo(), c1);
+        Animal animalSalvo = new Animal(24L, criacao.getApelido(),criacao.getNascimento(), criacao.getTipo(), c1);
         when(animalRepository.save(animal)).thenReturn(animalSalvo);
         Long teste = underTest.criar(criacao);
-        assertEquals(25L, teste);
+        assertEquals(24L, teste);
         verify(animalRepository).save(animal);
     }
 
