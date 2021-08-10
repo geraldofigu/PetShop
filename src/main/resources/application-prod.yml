@@ -4,7 +4,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/petshop
     username: postgres
-    password: Laneytf@200
+    password: password
     driver-class-name: org.postgresql.Driver
   jpa.hibernate.ddl-auto: update #create-drop, none, update, validate
   jpa.show-sql: true

@@ -4,10 +4,7 @@ import br.com.tt.PetShop.dto.AnimalCriacao;
 import br.com.tt.PetShop.dto.CategoriaCriacao;
 import br.com.tt.PetShop.service.CategoriaService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 
@@ -27,6 +24,11 @@ public class CategoriaController {
         Long id = categoriaService.criar(criacao);
         URI location = URI.create(String.format("/categoria/%s", id));
         return ResponseEntity.created(location).build();
+    }
+
+    @DeleteMapping("/{id}")
+    public void deletar(@PathVariable("id") Long id) {
+        categoriaService.apagar(id);
     }
 
 }

@@ -76,5 +76,8 @@ public class ProdutoService {
     }
     //buscarPorCategoria
     //apagar
+    public void apagar(Long id) {
+        produtoRepository.deleteById(id);
+    }
 
 }

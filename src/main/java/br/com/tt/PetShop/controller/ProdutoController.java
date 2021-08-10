@@ -1,16 +1,16 @@
 package br.com.tt.PetShop.controller;
 
+import br.com.tt.PetShop.dto.ProdutoConsulta;
 import br.com.tt.PetShop.dto.ProdutoCriacao;
 import br.com.tt.PetShop.exception.ProdutoException;
 import br.com.tt.PetShop.service.ProdutoService;
 import io.swagger.annotations.Api;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("/produtos")
@@ -30,4 +30,20 @@ public class ProdutoController {
         URI location = URI.create(String.format("/produtos/%s", id));
         return ResponseEntity.created(location).build();
     }
+
+    @GetMapping
+    public List<ProdutoConsulta> listar(){
+        return produtoService.listar();
+    }
+
+    @GetMapping("/buscar")
+    public List<ProdutoConsulta> buscarPorValor(@RequestBody BigDecimal min, @RequestBody BigDecimal max) {
+        return produtoService.buscaPorValor(min, max);
+    }
+
+    @DeleteMapping("/{id}")
+    public void apagar(@PathVariable("id") Long id) {
+        produtoService.apagar(id);
+    }
+
 }
